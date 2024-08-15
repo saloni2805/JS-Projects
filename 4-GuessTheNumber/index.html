@@ -128,7 +128,7 @@
       let randomNumber = parseInt(Math.random() * 100 + 1)
       const submit = document.querySelector("#submt")
       const userInput = document.querySelector("#uinput")
-      const guessSlot = document.querySelector(".pguesses")
+      const PrevGuesses = document.querySelector(".pguesses")
       const remaining = document.querySelector(".remainingguesses")
       const lowOrHi = document.querySelector(".lowOrHi")
       const startOver = document.querySelector(".resultParas")
@@ -157,7 +157,7 @@
           alert("Please enter a number less than 100")
         } else {
           prevGuess.push(guess)
-          if (numGuess === 10) {
+          if (numGuess === 9) {
             displayGuess(guess)
             displayMessage(`Game Over. Random number was ${randomNumber}`)
             endGame()
@@ -181,7 +181,7 @@
 
       function displayGuess(guess) {
         userInput.value = ""
-        guessSlot.innerHTML += `${guess}, `
+        PrevGuesses.innerHTML += `${guess}, `
         numGuess++
         remaining.innerHTML = `${10 - numGuess}`
       }
@@ -204,9 +204,9 @@
         newGameButton.addEventListener("click", function (e) {
           randomNumber = parseInt(Math.random() * 100 + 1)
           prevGuess = []
-          numGuess = 1
-          guessSlot.innerHTML = ""
-          remaining.innerHTML = `${11 - numGuess}`
+          numGuess = 0
+          PrevGuesses.innerHTML = ""
+          remaining.innerHTML = `${10 - numGuess}`
           userInput.removeAttribute("disabled")
           startOver.removeChild(p)
           playGame = true
